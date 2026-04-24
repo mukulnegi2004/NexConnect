@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const postsRouter = require("./routes/posts")
+const userRouter = require("./routes/user");
 
 app.use(cors({
     origin: process.env.FRONT
@@ -16,8 +17,14 @@ app.use(express.json());
 
 
 app.use("/posts", postsRouter);
+app.use("/users", userRouter);
 
 
+
+app.use((err, req, res) => {
+    let {status = 500, message = "internal server error"} = err;
+    res.status(status).json({message: message});
+})
 
 
 

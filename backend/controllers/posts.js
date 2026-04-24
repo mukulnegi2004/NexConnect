@@ -8,6 +8,4 @@ const runningCheck = (req, res) => {
 
 
 
-
-
-module.exports = {runningCheck};
+module.exports = { runningCheck };
