@@ -12,16 +12,17 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use("/uploads", express.static("uploads"));
 
 
 
-
+app.use("/", userRouter);
 app.use("/posts", postsRouter);
-app.use("/users", userRouter);
 
 
 
-app.use((err, req, res) => {
+
+app.use((err, req, res, next) => {
     let {status = 500, message = "internal server error"} = err;
     res.status(status).json({message: message});
 })
